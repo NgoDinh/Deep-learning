@@ -53,7 +53,7 @@ def main(type=0):
 	if type == 0:
 		history = model.fit(X_train, y_train, epochs=5, validation_data=(X_valid, y_valid))
 		# in this case i want to save model:
-		# model.save("my_keras_model.h5")
+		model.save("my_keras_model.h5")
 		# model = keras.models.load_model("my_keras_model.h5")
 	elif type == 1:
 		# CHECKPOINT
@@ -89,7 +89,7 @@ def main(type=0):
 
 
 if __name__ == '__main__':
-	input_value = sys.argv[1]
+	input_value = int(sys.argv[1])
 	main(input_value)
 
 # more loss function in keras, check it out:https://keras.io/losses/
@@ -118,3 +118,4 @@ class WideAndDeepModel(keras.Model):
 # to use grid search in keras: details in p320
 
 #???: how to choose optimizier, loss function, number of layer, number of node, activation function, p325
+
