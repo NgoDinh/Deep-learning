@@ -60,4 +60,32 @@ if __name__ == '__main__':
 # 10.Learning rate scheduling, descending over time
 #====> Make DNN faster to find optimization weight
 #-----------------------------------------------
-# 11.l2 and l1 Regularization: need to clear when to use each refular (p364)
+# 11.l2 and l1 Regularization: need to clear when to use each refular (p364):https://towardsdatascience.com/intuitions-on-l1-and-l2-regularisation-235f2db4c261
+# Python code: when i want to apply all technical above to every layer
+
+from functools import partial
+RegularizedDense = partial(keras.layers.Dense,
+	activation="elu",
+	kernel_initializer="he_normal",
+	kernel_regularizer=keras.regularizers.l2(0.01))
+
+model = keras.models.Sequential([
+	keras.layers.Flatten(input_shape=[28, 28]),
+	RegularizedDense(300),
+	RegularizedDense(100),
+	RegularizedDense(10, activation="softmax",
+	kernel_initializer="glorot_uniform")
+])
+
+# 12.drop_out
+model_dropout = keras.models.Sequential([
+	keras.layers.Flatten(input_shape=[28, 28]),
+	keras.layers.Dropout(rate=0.2),
+	keras.layers.Dense(300, activation="elu", kernel_initializer="he_normal"),
+	keras.layers.Dropout(rate=0.2),
+	keras.layers.Dense(100, activation="elu", kernel_initializer="he_normal"),
+	keras.layers.Dropout(rate=0.2),
+	keras.layers.Dense(10, activation="softmax")
+])
+
+# ALL TRICK ABOVE WILL BE HELPFULL TO IMPROVE DNN SO PLEASE CHECK CHAPTER 11 WHEN HAVE PROBLEM ABOUT DNN.
