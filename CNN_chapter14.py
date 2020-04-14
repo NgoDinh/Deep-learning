@@ -178,3 +178,5 @@ if __name__ == '__main__':
 
 # We can see that model had been overfit, so to avoid this we use two technique is: data augmentation
 # and dropout.
+
+# some other CNN architectures: check page 460 (Hands on machine learing)
